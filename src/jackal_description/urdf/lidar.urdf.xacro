@@ -64,17 +64,4 @@
 
     </xacro:macro>
 
-    <!-- Selector del sensor: model = "hokuyo" o "velodyne" -->
-    <xacro:macro name="jackal_lidar" params="model">
-
-        <xacro:if value="${model == 'hokuyo'}">
-            <xacro:hokuyo_lidar/>
-        </xacro:if>
-
-        <xacro:if value="${model == 'velodyne'}">
-            <xacro:velodyne_lidar/>
-        </xacro:if>
-
-    </xacro:macro>
-
 </robot>

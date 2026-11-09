@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- Actividad 3: camara de profundidad tipo RealSense (medidas aproximadas de una D435) -->
+    <xacro:property name="camera_length" value="0.025"/>     <!-- fondo (x) -->
+    <xacro:property name="camera_width" value="0.090"/>      <!-- ancho (y) -->
+    <xacro:property name="camera_height" value="0.025"/>     <!-- alto (z) -->
+    <xacro:property name="ir_radius" value="0.004"/>
+    <xacro:property name="ir_thickness" value="0.002"/>
+    <xacro:property name="ir_baseline" value="0.050"/>       <!-- distancia entre los dos IR -->
+    <xacro:property name="camera_front_offset" value="0.020"/>
+
+    <xacro:macro name="jackal_realsense">
+
+        <!-- Cuerpo de la camara -->
+        <link name="camera_body">
+
+            <visual>
+                <geometry>
+                    <box size="${camera_length} ${camera_width} ${camera_height}"/>
+                </geometry>
+
+                <material name="SensorGrey"/>
+            </visual>
+
+        </link>
+
+        <joint name="camera_joint" type="fixed">
+            <origin
+                xyz="${(chassis_length/2) - camera_front_offset} 0 ${chassis_height + camera_height/2}"
+            />
+
+            <parent link="chassis_link"/>
+            <child link="camera_body"/>
+        </joint>
+
+        <!-- Sensor IR izquierdo: cilindro girado para que mire hacia adelante (x) -->
+        <link name="camera_left_ir">
+
+            <visual>
+                <origin xyz="0 0 0" rpy="0 ${PI/2} 0"/>
+
+                <geometry>
+                    <cylinder radius="${ir_radius}" length="${ir_thickness}"/>
+                </geometry>
+
+                <material name="black"/>
+            </visual>
+
+        </link>
+
+        <joint name="camera_left_ir_joint" type="fixed">
+            <origin xyz="${camera_length/2} ${ir_baseline/2} 0"/>
+
+            <parent link="camera_body"/>
+            <child link="camera_left_ir"/>
+        </joint>
+
+        <!-- Sensor IR derecho -->
+        <link name="camera_right_ir">
+
+            <visual>
+                <origin xyz="0 0 0" rpy="0 ${PI/2} 0"/>
+
+                <geometry>
+                    <cylinder radius="${ir_radius}" length="${ir_thickness}"/>
+                </geometry>
+
+                <material name="black"/>
+            </visual>
+
+        </link>
+
+        <joint name="camera_right_ir_joint" type="fixed">
+            <origin xyz="${camera_length/2} ${-ir_baseline/2} 0"/>
+
+            <parent link="camera_body"/>
+            <child link="camera_right_ir"/>
+        </joint>
+
+    </xacro:macro>
+
+</robot>
