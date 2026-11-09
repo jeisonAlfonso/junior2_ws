@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- Actividad 1: Hokuyo 2D -->
+    <xacro:macro name="hokuyo_lidar">
+
+        <link name="hokuyo_lidar">
+
+            <visual>
+                <geometry>
+                    <mesh filename="package://jackal_description/meshes/hokuyo_ust10.stl"/>
+                </geometry>
+
+                <material name="SensorGrey"/>
+            </visual>
+
+        </link>
+
+        <joint name="lidar_joint" type="fixed">
+            <!-- el macro de lidar height esta declarado arriba pero al fin no fue necesario utilizarlo -->
+            <origin
+                xyz="${(chassis_length/2) - lidar_back_offset} 0 ${chassis_height}"
+            />
+
+            <parent link="chassis_link"/>
+            <child link="hokuyo_lidar"/>
+        </joint>
+
+    </xacro:macro>
+
+    <!-- Actividad 2: Velodyne VLP-16 3D (meshes del paquete velodyne_description) -->
+    <xacro:macro name="velodyne_lidar">
+
+        <link name="velodyne_lidar">
+
+            <visual>
+                <geometry>
+                    <mesh filename="package://velodyne_description/meshes/VLP16_base_1.dae"/>
+                </geometry>
+            </visual>
+
+            <visual>
+                <geometry>
+                    <mesh filename="package://velodyne_description/meshes/VLP16_base_2.dae"/>
+                </geometry>
+            </visual>
+
+            <visual>
+                <geometry>
+                    <mesh filename="package://velodyne_description/meshes/VLP16_scan.dae"/>
+                </geometry>
+            </visual>
+
+        </link>
+
+        <joint name="lidar_joint" type="fixed">
+            <origin
+                xyz="${(chassis_length/2) - lidar_back_offset} 0 ${chassis_height}"
+            />
+
+            <parent link="chassis_link"/>
+            <child link="velodyne_lidar"/>
+        </joint>
+
+    </xacro:macro>
+
+    <!-- Selector del sensor: model = "hokuyo" o "velodyne" -->
+    <xacro:macro name="jackal_lidar" params="model">
+
+        <xacro:if value="${model == 'hokuyo'}">
+            <xacro:hokuyo_lidar/>
+        </xacro:if>
+
+        <xacro:if value="${model == 'velodyne'}">
+            <xacro:velodyne_lidar/>
+        </xacro:if>
+
+    </xacro:macro>
+
+</robot>

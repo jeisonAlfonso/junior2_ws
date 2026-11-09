@@ -15,6 +15,9 @@
     <xacro:property name="lidar_height" value= "0.0643"/>
     <xacro:property name="lidar_back_offset" value= "0.025"/>
 
+    <!-- Sensor a cargar: "hokuyo" o "velodyne" -->
+    <xacro:property name="lidar_model" value="velodyne"/>
+
     <xacro:include
         filename="$(find jackal_description)/urdf/jackal_material.xacro"
     />
@@ -27,15 +30,19 @@
         filename="$(find jackal_description)/urdf/wheel.urdf.xacro"
     />
 
+    <xacro:include
+        filename="$(find jackal_description)/urdf/lidar.urdf.xacro"
+    />
+
     <xacro:jackal_base
         PI="${PI}"
         footprint_vertical_offset="${footprint_vertical_offset}"
         chassis_length="${chassis_length}"
         chassis_width="${chassis_width}"
         chassis_height="${chassis_height}"
-        lidar_height="${lidar_height}"
-        lidar_back_offset="${lidar_back_offset}"
     />
+
+    <xacro:jackal_lidar model="${lidar_model}"/>
 
     <xacro:wheel
         prefix="front_left"
