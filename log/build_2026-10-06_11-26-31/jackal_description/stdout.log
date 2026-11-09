@@ -1,0 +1,44 @@
+-- The C compiler identification is GNU 13.3.0
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 2.5.6 (/opt/ros/jazzy/share/ament_cmake/cmake)
+-- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter 
+-- Configuring done (0.7s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/jeisonubuntu/Desktop/junior2_ws/build/jackal_description
+-- Install configuration: ""
+-- Installing: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description//launch
+-- Installing: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description//launch/display.launch.py
+-- Installing: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description//urdf
+-- Installing: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description//urdf/jackal_material.xacro
+-- Installing: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description//urdf/jackal.urdf.xacro
+-- Installing: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description//urdf/wheel.urdf.xacro
+-- Installing: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description//urdf/base.urdf.xacro
+-- Installing: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description//meshes
+-- Installing: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description//meshes/jackal-base.stl
+-- Installing: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description//meshes/jackal-wheel.stl
+-- Installing: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description//meshes/accessory_fender.stl
+-- Installing: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/ament_index/resource_index/package_run_dependencies/jackal_description
+-- Installing: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/ament_index/resource_index/parent_prefix_path/jackal_description
+-- Installing: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description/environment/ament_prefix_path.sh
+-- Installing: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description/environment/ament_prefix_path.dsv
+-- Installing: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description/environment/path.sh
+-- Installing: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description/environment/path.dsv
+-- Installing: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description/local_setup.bash
+-- Installing: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description/local_setup.sh
+-- Installing: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description/local_setup.zsh
+-- Installing: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description/local_setup.dsv
+-- Installing: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description/package.dsv
+-- Installing: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/ament_index/resource_index/packages/jackal_description
+-- Installing: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description/cmake/jackal_descriptionConfig.cmake
+-- Installing: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description/cmake/jackal_descriptionConfig-version.cmake
+-- Installing: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description/package.xml

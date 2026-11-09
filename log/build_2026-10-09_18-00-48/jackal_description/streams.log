@@ -1,0 +1,32 @@
+[0.009s] Invoking command in '/home/jeisonubuntu/Desktop/junior2_ws/build/jackal_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jeisonubuntu/Desktop/junior1_ws/install/ras_topics:/home/jeisonubuntu/Desktop/junior1_ws/install/ras_services:/home/jeisonubuntu/Desktop/junior1_ws/install/ras_firmware_communication:/home/jeisonubuntu/Desktop/junior1_ws/install/my_py_pkg:/home/jeisonubuntu/Desktop/junior1_ws/src/ras_firmware_communication/install/ras_firmware_communication:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/jeisonubuntu/Desktop/junior2_ws/build/jackal_description -- -j16 -l16
+[0.051s] Invoked command in '/home/jeisonubuntu/Desktop/junior2_ws/build/jackal_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jeisonubuntu/Desktop/junior1_ws/install/ras_topics:/home/jeisonubuntu/Desktop/junior1_ws/install/ras_services:/home/jeisonubuntu/Desktop/junior1_ws/install/ras_firmware_communication:/home/jeisonubuntu/Desktop/junior1_ws/install/my_py_pkg:/home/jeisonubuntu/Desktop/junior1_ws/src/ras_firmware_communication/install/ras_firmware_communication:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/jeisonubuntu/Desktop/junior2_ws/build/jackal_description -- -j16 -l16
+[0.064s] Invoking command in '/home/jeisonubuntu/Desktop/junior2_ws/build/jackal_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jeisonubuntu/Desktop/junior1_ws/install/ras_topics:/home/jeisonubuntu/Desktop/junior1_ws/install/ras_services:/home/jeisonubuntu/Desktop/junior1_ws/install/ras_firmware_communication:/home/jeisonubuntu/Desktop/junior1_ws/install/my_py_pkg:/home/jeisonubuntu/Desktop/junior1_ws/src/ras_firmware_communication/install/ras_firmware_communication:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/jeisonubuntu/Desktop/junior2_ws/build/jackal_description
+[0.073s] -- Install configuration: ""
+[0.073s] -- Up-to-date: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description//launch
+[0.073s] -- Up-to-date: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description//launch/display.launch.py
+[0.073s] -- Up-to-date: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description//urdf
+[0.073s] -- Up-to-date: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description//urdf/jackal_material.xacro
+[0.073s] -- Up-to-date: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description//urdf/jackal.urdf.xacro
+[0.073s] -- Up-to-date: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description//urdf/wheel.urdf.xacro
+[0.073s] -- Installing: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description//urdf/base.urdf.xacro
+[0.073s] -- Up-to-date: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description//meshes
+[0.074s] -- Up-to-date: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description//meshes/jackal-base.stl
+[0.074s] -- Up-to-date: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description//meshes/jackal-wheel.stl
+[0.074s] -- Up-to-date: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description//meshes/accessory_fender.stl
+[0.074s] -- Up-to-date: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description//meshes/hokuyo_ust10.stl
+[0.074s] -- Up-to-date: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/ament_index/resource_index/package_run_dependencies/jackal_description
+[0.074s] -- Up-to-date: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/ament_index/resource_index/parent_prefix_path/jackal_description
+[0.074s] -- Up-to-date: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description/environment/ament_prefix_path.sh
+[0.074s] -- Up-to-date: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description/environment/ament_prefix_path.dsv
+[0.074s] -- Up-to-date: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description/environment/path.sh
+[0.074s] -- Up-to-date: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description/environment/path.dsv
+[0.074s] -- Up-to-date: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description/local_setup.bash
+[0.074s] -- Up-to-date: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description/local_setup.sh
+[0.074s] -- Up-to-date: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description/local_setup.zsh
+[0.074s] -- Up-to-date: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description/local_setup.dsv
+[0.075s] -- Installing: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description/package.dsv
+[0.075s] -- Up-to-date: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/ament_index/resource_index/packages/jackal_description
+[0.075s] -- Up-to-date: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description/cmake/jackal_descriptionConfig.cmake
+[0.075s] -- Up-to-date: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description/cmake/jackal_descriptionConfig-version.cmake
+[0.075s] -- Up-to-date: /home/jeisonubuntu/Desktop/junior2_ws/install/jackal_description/share/jackal_description/package.xml
+[0.076s] Invoked command in '/home/jeisonubuntu/Desktop/junior2_ws/build/jackal_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jeisonubuntu/Desktop/junior1_ws/install/ras_topics:/home/jeisonubuntu/Desktop/junior1_ws/install/ras_services:/home/jeisonubuntu/Desktop/junior1_ws/install/ras_firmware_communication:/home/jeisonubuntu/Desktop/junior1_ws/install/my_py_pkg:/home/jeisonubuntu/Desktop/junior1_ws/src/ras_firmware_communication/install/ras_firmware_communication:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/jeisonubuntu/Desktop/junior2_ws/build/jackal_description

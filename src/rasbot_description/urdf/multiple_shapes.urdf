@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<robot name="multi_shapes">
+    <link name="base_link"/>
+
+    <link name="link1">
+        <visual>
+            <geometry>
+                <box size="1 0.5 0.2"/>
+            </geometry>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 0.4"/>
+            <geometry>
+                <cylinder radius="0.1" length="0.8"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="joint1" type="fixed">
+        <parent link="base_link"/>
+        <child link="link1"/>
+        <origin xyz="0 0 1"/>
+    </joint>
+</robot>
