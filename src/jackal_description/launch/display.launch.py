@@ -21,6 +21,13 @@ ARGUMENTS = [
             'jackal.urdf.xacro'
         ])
     ),
+
+    DeclareLaunchArgument(
+        name='lidar_model',
+        default_value='hokuyo',
+        choices=['hokuyo', 'velodyne', 'none'],
+        description='LIDAR montado sobre el Jackal'
+    ),
 ]
 
 
@@ -36,7 +43,13 @@ def generate_launch_description():
             ]),
             launch_arguments={
                 'urdf_package': 'jackal_description',
-                'urdf_package_path': LaunchConfiguration('model'),
+                # urdf_launch corre "xacro <ruta>", asi que el argumento de xacro
+                # va pegado a la ruta del modelo.
+                'urdf_package_path': [
+                    LaunchConfiguration('model'),
+                    ' lidar_model:=',
+                    LaunchConfiguration('lidar_model'),
+                ],
                 'jsp_gui': LaunchConfiguration('gui')
             }.items()
         )

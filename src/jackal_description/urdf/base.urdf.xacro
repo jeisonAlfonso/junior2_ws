@@ -3,7 +3,7 @@
 
     <xacro:macro
         name="jackal_base"
-        params="PI footprint_vertical_offset chassis_length chassis_width chassis_height lidar_height lidar_back_offset">
+        params="PI footprint_vertical_offset chassis_length chassis_width chassis_height">
 
         <link name="base_link"/>
 
@@ -57,29 +57,6 @@
 
         </link>
         
-        <!--
-         <link name="hokuyo_lidar"> 
-
-            <visual>
-                <geometry>
-                    <mesh filename="package://jackal_description/meshes/hokuyo_ust10.stl"/>
-                </geometry>
-
-                <material name="SensorGrey"/>
-            </visual>
-
-        </link>
-
-        <joint name="lidar_joint" type="fixed">
-            <origin
-                xyz="${(chassis_length/2) - lidar_back_offset} 0 ${chassis_height}"  el macro de lidar height esta declarado arriba pero al fin no fue necesario utilizarlo
-            />
-
-            <parent link="chassis_link"/>
-            <child link="hokuyo_lidar"/>
-        </joint>
-        -->
-
         <link name="front_fender_link">
 
             <visual>

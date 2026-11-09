@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- Hokuyo UST-10LX. El mesh ya viene en metros y su origen esta en la base del sensor. -->
+    <xacro:macro name="hokuyo_lidar" params="parent *origin">
+
+        <link name="hokuyo_lidar">
+            <visual>
+                <geometry>
+                    <mesh filename="package://jackal_description/meshes/hokuyo_ust10.stl"/>
+                </geometry>
+                <material name="SensorGrey"/>
+            </visual>
+        </link>
+
+        <joint name="lidar_joint" type="fixed">
+            <xacro:insert_block name="origin"/>
+            <parent link="${parent}"/>
+            <child link="hokuyo_lidar"/>
+        </joint>
+
+    </xacro:macro>
+
+    <!-- Velodyne VLP-16 aproximado con un cilindro (103.3 mm de diametro, 71.7 mm de alto).
+         El origen del link queda en la base del sensor, igual que el Hokuyo. -->
+    <xacro:macro name="velodyne_lidar" params="parent *origin">
+
+        <xacro:property name="vlp16_radius" value="${0.1033/2}"/>
+        <xacro:property name="vlp16_height" value="0.0717"/>
+
+        <link name="velodyne_lidar">
+            <visual>
+                <origin xyz="0 0 ${vlp16_height/2}" rpy="0 0 0"/>
+                <geometry>
+                    <cylinder radius="${vlp16_radius}" length="${vlp16_height}"/>
+                </geometry>
+                <material name="SensorGrey"/>
+            </visual>
+        </link>
+
+        <joint name="lidar_joint" type="fixed">
+            <xacro:insert_block name="origin"/>
+            <parent link="${parent}"/>
+            <child link="velodyne_lidar"/>
+        </joint>
+
+    </xacro:macro>
+
+    <!-- Selector: model puede ser hokuyo, velodyne o none -->
+    <xacro:macro name="jackal_lidar" params="model parent chassis_length chassis_height lidar_back_offset">
+
+        <xacro:if value="${model == 'hokuyo'}">
+            <xacro:hokuyo_lidar parent="${parent}">
+                <origin xyz="${(chassis_length/2) - lidar_back_offset} 0 ${chassis_height}" rpy="0 0 0"/>
+            </xacro:hokuyo_lidar>
+        </xacro:if>
+
+        <xacro:if value="${model == 'velodyne'}">
+            <xacro:velodyne_lidar parent="${parent}">
+                <origin xyz="0 0 ${chassis_height}" rpy="0 0 0"/>
+            </xacro:velodyne_lidar>
+        </xacro:if>
+
+    </xacro:macro>
+
+</robot>
