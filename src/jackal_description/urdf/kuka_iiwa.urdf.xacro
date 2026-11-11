@@ -1,0 +1,194 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- Actividad 4: brazo KUKA LBR iiwa 7 R800 (7 juntas revolutas, medidas del datasheet) -->
+    <!-- El enunciado monta el brazo sobre el "top_plate" del Pioneer. El Jackal no tiene ese link,
+         asi que se monta sobre la cara superior de chassis_link (z = chassis_height),
+         la misma referencia que usan el lidar y la camara. -->
+
+    <!-- Montaje del brazo sobre el chasis -->
+    <xacro:property name="arm_mount_x" value="0.0"/>                   <!-- centrado en el chasis -->
+    <xacro:property name="arm_mount_height" value="${chassis_height}"/> <!-- altura de montaje de la base -->
+
+    <!-- Longitudes de los links (distancia entre una junta y la siguiente, en metros) -->
+    <xacro:property name="arm_base_length" value="0.1575"/>  <!-- base -> A1 -->
+    <xacro:property name="arm_link1_length" value="0.2025"/> <!-- A1 -> A2 -->
+    <xacro:property name="arm_link2_length" value="0.2045"/> <!-- A2 -> A3 -->
+    <xacro:property name="arm_link3_length" value="0.2155"/> <!-- A3 -> A4 -->
+    <xacro:property name="arm_link4_length" value="0.1845"/> <!-- A4 -> A5 -->
+    <xacro:property name="arm_link5_length" value="0.2155"/> <!-- A5 -> A6 -->
+    <xacro:property name="arm_link6_length" value="0.0810"/> <!-- A6 -> A7 -->
+    <xacro:property name="arm_link7_length" value="0.0450"/> <!-- A7 -> brida -->
+
+    <!-- Radios de los links (aproximados, solo para el dibujo) -->
+    <xacro:property name="arm_base_radius" value="0.070"/>
+    <xacro:property name="arm_link_radius" value="0.060"/>
+    <xacro:property name="arm_wrist_radius" value="0.045"/>
+
+    <!-- Limites de las juntas (datasheet iiwa 7 R800) -->
+    <!-- posicion: +/- grados pasados a radianes -->
+    <xacro:property name="arm_a1_limit" value="${170*PI/180}"/>
+    <xacro:property name="arm_a2_limit" value="${120*PI/180}"/>
+    <xacro:property name="arm_a3_limit" value="${170*PI/180}"/>
+    <xacro:property name="arm_a4_limit" value="${120*PI/180}"/>
+    <xacro:property name="arm_a5_limit" value="${170*PI/180}"/>
+    <xacro:property name="arm_a6_limit" value="${120*PI/180}"/>
+    <xacro:property name="arm_a7_limit" value="${175*PI/180}"/>
+
+    <!-- velocidad maxima (rad/s) -->
+    <xacro:property name="arm_a1_velocity" value="${98*PI/180}"/>
+    <xacro:property name="arm_a2_velocity" value="${98*PI/180}"/>
+    <xacro:property name="arm_a3_velocity" value="${100*PI/180}"/>
+    <xacro:property name="arm_a4_velocity" value="${130*PI/180}"/>
+    <xacro:property name="arm_a5_velocity" value="${140*PI/180}"/>
+    <xacro:property name="arm_a6_velocity" value="${180*PI/180}"/>
+    <xacro:property name="arm_a7_velocity" value="${180*PI/180}"/>
+
+    <!-- torque maximo (N m) -->
+    <xacro:property name="arm_a1_effort" value="176"/>
+    <xacro:property name="arm_a2_effort" value="176"/>
+    <xacro:property name="arm_a3_effort" value="110"/>
+    <xacro:property name="arm_a4_effort" value="110"/>
+    <xacro:property name="arm_a5_effort" value="110"/>
+    <xacro:property name="arm_a6_effort" value="40"/>
+    <xacro:property name="arm_a7_effort" value="40"/>
+
+    <!-- Macro para un link del brazo: cilindro que sube desde la junta + esfera en la junta -->
+    <xacro:macro name="arm_link" params="name radius length color">
+
+        <link name="${name}">
+
+            <visual>
+                <origin xyz="0 0 ${length/2}"/>
+
+                <geometry>
+                    <cylinder radius="${radius}" length="${length}"/>
+                </geometry>
+
+                <material name="${color}"/>
+            </visual>
+
+            <visual>
+                <geometry>
+                    <sphere radius="${radius}"/>
+                </geometry>
+
+                <material name="${color}"/>
+            </visual>
+
+            <collision>
+                <origin xyz="0 0 ${length/2}"/>
+
+                <geometry>
+                    <cylinder radius="${radius}" length="${length}"/>
+                </geometry>
+            </collision>
+
+        </link>
+
+    </xacro:macro>
+
+    <!-- Macro para una junta revoluta: va en la punta del link padre (z = largo del padre) -->
+    <xacro:macro name="arm_joint" params="name parent child parent_length axis limit velocity effort">
+
+        <joint name="${name}" type="revolute">
+            <origin xyz="0 0 ${parent_length}"/>
+
+            <parent link="${parent}"/>
+            <child link="${child}"/>
+
+            <axis xyz="${axis}"/>
+
+            <limit
+                lower="${-limit}"
+                upper="${limit}"
+                velocity="${velocity}"
+                effort="${effort}"
+            />
+        </joint>
+
+    </xacro:macro>
+
+    <xacro:macro name="kuka_iiwa">
+
+        <!-- Base del brazo, fija al chasis -->
+        <link name="arm_base_link">
+
+            <visual>
+                <origin xyz="0 0 ${arm_base_length/2}"/>
+
+                <geometry>
+                    <cylinder radius="${arm_base_radius}" length="${arm_base_length}"/>
+                </geometry>
+
+                <material name="light_grey"/>
+            </visual>
+
+            <collision>
+                <origin xyz="0 0 ${arm_base_length/2}"/>
+
+                <geometry>
+                    <cylinder radius="${arm_base_radius}" length="${arm_base_length}"/>
+                </geometry>
+            </collision>
+
+        </link>
+
+        <joint name="arm_mount" type="fixed">
+            <origin xyz="${arm_mount_x} 0 ${arm_mount_height}"/>
+
+            <parent link="chassis_link"/>
+            <child link="arm_base_link"/>
+        </joint>
+
+        <!-- Links 1 a 7 -->
+        <xacro:arm_link name="arm_link_1" radius="${arm_link_radius}" length="${arm_link1_length}" color="kuka_orange"/>
+        <xacro:arm_link name="arm_link_2" radius="${arm_link_radius}" length="${arm_link2_length}" color="kuka_orange"/>
+        <xacro:arm_link name="arm_link_3" radius="${arm_link_radius}" length="${arm_link3_length}" color="kuka_orange"/>
+        <xacro:arm_link name="arm_link_4" radius="${arm_link_radius}" length="${arm_link4_length}" color="kuka_orange"/>
+        <xacro:arm_link name="arm_link_5" radius="${arm_wrist_radius}" length="${arm_link5_length}" color="kuka_orange"/>
+        <xacro:arm_link name="arm_link_6" radius="${arm_wrist_radius}" length="${arm_link6_length}" color="kuka_orange"/>
+        <xacro:arm_link name="arm_link_7" radius="${arm_wrist_radius}" length="${arm_link7_length}" color="light_grey"/>
+
+        <!-- Juntas A1 a A7: las impares giran sobre z (su propio eje), las pares doblan sobre y -->
+        <xacro:arm_joint name="arm_joint_a1" parent="arm_base_link" child="arm_link_1"
+            parent_length="${arm_base_length}" axis="0 0 1"
+            limit="${arm_a1_limit}" velocity="${arm_a1_velocity}" effort="${arm_a1_effort}"/>
+
+        <xacro:arm_joint name="arm_joint_a2" parent="arm_link_1" child="arm_link_2"
+            parent_length="${arm_link1_length}" axis="0 1 0"
+            limit="${arm_a2_limit}" velocity="${arm_a2_velocity}" effort="${arm_a2_effort}"/>
+
+        <xacro:arm_joint name="arm_joint_a3" parent="arm_link_2" child="arm_link_3"
+            parent_length="${arm_link2_length}" axis="0 0 1"
+            limit="${arm_a3_limit}" velocity="${arm_a3_velocity}" effort="${arm_a3_effort}"/>
+
+        <xacro:arm_joint name="arm_joint_a4" parent="arm_link_3" child="arm_link_4"
+            parent_length="${arm_link3_length}" axis="0 1 0"
+            limit="${arm_a4_limit}" velocity="${arm_a4_velocity}" effort="${arm_a4_effort}"/>
+
+        <xacro:arm_joint name="arm_joint_a5" parent="arm_link_4" child="arm_link_5"
+            parent_length="${arm_link4_length}" axis="0 0 1"
+            limit="${arm_a5_limit}" velocity="${arm_a5_velocity}" effort="${arm_a5_effort}"/>
+
+        <xacro:arm_joint name="arm_joint_a6" parent="arm_link_5" child="arm_link_6"
+            parent_length="${arm_link5_length}" axis="0 1 0"
+            limit="${arm_a6_limit}" velocity="${arm_a6_velocity}" effort="${arm_a6_effort}"/>
+
+        <xacro:arm_joint name="arm_joint_a7" parent="arm_link_6" child="arm_link_7"
+            parent_length="${arm_link6_length}" axis="0 0 1"
+            limit="${arm_a7_limit}" velocity="${arm_a7_velocity}" effort="${arm_a7_effort}"/>
+
+        <!-- Brida (punta del brazo): aqui iria la herramienta o el gripper -->
+        <link name="arm_flange"/>
+
+        <joint name="arm_flange_joint" type="fixed">
+            <origin xyz="0 0 ${arm_link7_length}"/>
+
+            <parent link="arm_link_7"/>
+            <child link="arm_flange"/>
+        </joint>
+
+    </xacro:macro>
+
+</robot>

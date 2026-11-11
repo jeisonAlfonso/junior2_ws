@@ -38,6 +38,10 @@
         filename="$(find jackal_description)/urdf/realsense.urdf.xacro"
     />
 
+    <xacro:include
+        filename="$(find jackal_description)/urdf/kuka_iiwa.urdf.xacro"
+    />
+
     <xacro:jackal_base
         PI="${PI}"
         footprint_vertical_offset="${footprint_vertical_offset}"
@@ -57,6 +61,9 @@
     <xacro:if value="${sensor_type == 'realsense'}">
         <xacro:jackal_realsense/>
     </xacro:if>
+
+    <!-- Actividad 4: brazo KUKA iiwa sobre el chasis -->
+    <xacro:kuka_iiwa/>
 
     <xacro:wheel
         prefix="front_left"
